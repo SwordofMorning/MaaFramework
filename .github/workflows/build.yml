@@ -562,7 +562,7 @@ jobs:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
 
     trigger_release:
-        if: ${{ needs.meta.outputs.is-release == 'true' && github.repository_id == '632024122' }}
+        if: ${{ needs.meta.outputs.is-release == 'true' }}
         needs:
             [
                 meta,
