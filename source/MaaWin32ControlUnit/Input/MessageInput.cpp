@@ -7,10 +7,22 @@
 
 #include "InputUtils.h"
 
+#pragma pack(push, 1)
+struct LunaPacket {
+    int32_t type;
+    int32_t x;
+    int32_t y;
+};
+#pragma pack(pop)
+
 MAA_CTRL_UNIT_NS_BEGIN
 
 MessageInput::~MessageInput()
 {
+    if (luna_pipe_ != INVALID_HANDLE_VALUE) {
+        CloseHandle(luna_pipe_);
+        luna_pipe_ = INVALID_HANDLE_VALUE;
+    }
     if (block_input_) {
         BlockInput(FALSE);
     }
@@ -108,6 +120,15 @@ bool MessageInput::swipe(int x1, int y1, int x2, int y2, int duration)
 
 bool MessageInput::touch_down(int contact, int x, int y, int pressure)
 {
+    // 1. Try Luna First
+    // Note: touch_down usually implies moving to the point then pressing
+    if (try_send_luna(LUNA_CMD_DOWN, x, y)) {
+        last_pos_ = { x, y };
+        last_pos_set_ = true;
+        return true;
+    }
+
+    // 2. Fallback
     LogInfo << VAR(mode_) << VAR(with_cursor_pos_) << VAR(contact) << VAR(x) << VAR(y) << VAR(pressure);
 
     std::ignore = pressure;
@@ -169,6 +190,14 @@ bool MessageInput::touch_move(int contact, int x, int y, int pressure)
 {
     // LogInfo << VAR(contact) << VAR(x) << VAR(y) << VAR(pressure);
 
+    // 1. Try Luna First
+    if (try_send_luna(LUNA_CMD_MOVE, x, y)) {
+        last_pos_ = { x, y };
+        last_pos_set_ = true;
+        return true;
+    }
+
+    // 2. Fallback
     std::ignore = pressure;
 
     if (!hwnd_) {
@@ -197,6 +226,14 @@ bool MessageInput::touch_move(int contact, int x, int y, int pressure)
 
 bool MessageInput::touch_up(int contact)
 {
+    // 1. Try Luna First
+    auto target_pos = get_target_pos();
+    if (try_send_luna(LUNA_CMD_UP, target_pos.first, target_pos.second)) {
+        return true;
+    }
+
+    // 2. Fallback
+    
     LogInfo << VAR(mode_) << VAR(with_cursor_pos_) << VAR(contact);
 
     if (!hwnd_) {
@@ -353,5 +390,69 @@ bool MessageInput::scroll(int dx, int dy)
 
     return true;
 }
+
+bool MessageInput::connect_luna_pipe()
+{
+    if (luna_pipe_ != INVALID_HANDLE_VALUE) {
+        return true;
+    }
+    
+    // Try to open the named pipe created by Python
+    luna_pipe_ = CreateFileW(
+        L"\\\\.\\pipe\\MaaLunaPipe",
+        GENERIC_WRITE,
+        0,              // No sharing
+        NULL,           // Default security attributes
+        OPEN_EXISTING,  // Opens existing pipe
+        0,              // Default attributes
+        NULL            // No template file
+    );
+
+    if (luna_pipe_ == INVALID_HANDLE_VALUE) {
+        // Only log once or periodically to avoid spamming if Luna isn't running
+        // LogError << "Failed to connect to Luna Pipe. Error: " << GetLastError();
+        return false;
+    }
+    
+    return true;
+}
+
+bool MessageInput::try_send_luna(int type, int x, int y)
+{
+    if (!luna_available_) {
+        return false;
+    }
+
+    if (!connect_luna_pipe()) {
+        // If connection fails, assume Luna is not active, fallback to legacy
+        // You might want a retry mechanism, but for now fallback is safer
+        return false; 
+    }
+
+    LunaPacket packet;
+    packet.type = type;
+    packet.x = x;
+    packet.y = y;
+
+    DWORD bytes_written = 0;
+    BOOL success = WriteFile(
+        luna_pipe_,
+        &packet,
+        sizeof(LunaPacket),
+        &bytes_written,
+        NULL
+    );
+
+    if (!success || bytes_written != sizeof(LunaPacket)) {
+        LogError << "Failed to write to Luna Pipe. Error: " << GetLastError();
+        CloseHandle(luna_pipe_);
+        luna_pipe_ = INVALID_HANDLE_VALUE;
+        return false;
+    }
+
+    return true;
+}
+
+
 
 MAA_CTRL_UNIT_NS_END

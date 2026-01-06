@@ -71,6 +71,18 @@ private:
     bool last_pos_set_ = false;
     POINT saved_cursor_pos_ = { 0, 0 };
     bool cursor_pos_saved_ = false;
+
+    // --- Luna IPC Extension ---
+    bool try_send_luna(int type, int x, int y);
+    bool connect_luna_pipe();
+    
+    HANDLE luna_pipe_ = INVALID_HANDLE_VALUE;
+    bool luna_available_ = true; // Optimistic default
+    
+    // Protocol constants
+    static constexpr int LUNA_CMD_MOVE = 1;
+    static constexpr int LUNA_CMD_DOWN = 2;
+    static constexpr int LUNA_CMD_UP   = 3;
 };
 
 MAA_CTRL_UNIT_NS_END
