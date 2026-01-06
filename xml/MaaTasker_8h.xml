@@ -1,0 +1,903 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="MaaTasker_8h" kind="file" language="C++">
+    <compoundname>MaaTasker.h</compoundname>
+    <includes refid="MaaDef_8h" local="yes">../MaaDef.h</includes>
+    <includes refid="MaaPort_8h" local="yes">../MaaPort.h</includes>
+    <includedby refid="MaaAPI_8h" local="yes">include/MaaFramework/MaaAPI.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>include/MaaFramework/Instance/MaaTasker.h</label>
+        <link refid="MaaTasker_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>../MaaDef.h</label>
+        <link refid="MaaDef_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MaaPort.h</label>
+        <link refid="MaaPort_8h"/>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1">
+        <label>include/MaaFramework/Instance/MaaTasker.h</label>
+        <link refid="MaaTasker_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>include/MaaFramework/MaaAPI.h</label>
+        <link refid="MaaAPI_8h"/>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="MaaTasker_8h_1abc517c855a09e5cd6a3cf33f0c7abb4b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+        <definition>MAA_FRAMEWORK_API MaaTasker * MaaTaskerCreate</definition>
+        <argsstring>()</argsstring>
+        <name>MaaTaskerCreate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="22" column="33" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="22" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1abefa8dae5713c3393833d8644f2435a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> void</type>
+        <definition>MAA_FRAMEWORK_API void MaaTaskerDestroy</definition>
+        <argsstring>(MaaTasker *tasker)</argsstring>
+        <name>MaaTaskerDestroy</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="24" column="28" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="24" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a5a7ad510d2569e8cae40a60725ca5a22" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1aac4cf6870bfe8fef31ead507dcfb4251" kindref="member">MaaSinkId</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaSinkId MaaTaskerAddSink</definition>
+        <argsstring>(MaaTasker *tasker, MaaEventCallback sink, void *trans_arg)</argsstring>
+        <name>MaaTaskerAddSink</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a6b9bcefbd6beaf7a0da83c92318a8693" kindref="member">MaaEventCallback</ref></type>
+          <declname>sink</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>trans_arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="26" column="33" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="26" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a489c89310019ea5780c253beca2a4e07" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> void</type>
+        <definition>MAA_FRAMEWORK_API void MaaTaskerRemoveSink</definition>
+        <argsstring>(MaaTasker *tasker, MaaSinkId sink_id)</argsstring>
+        <name>MaaTaskerRemoveSink</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1aac4cf6870bfe8fef31ead507dcfb4251" kindref="member">MaaSinkId</ref></type>
+          <declname>sink_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="28" column="28" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="28" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a9b5b5d86d47472092e1b468bb489fd3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> void</type>
+        <definition>MAA_FRAMEWORK_API void MaaTaskerClearSinks</definition>
+        <argsstring>(MaaTasker *tasker)</argsstring>
+        <name>MaaTaskerClearSinks</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="30" column="28" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="30" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1af8fe24f4efa61c47ee8e018a7f67c10f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1aac4cf6870bfe8fef31ead507dcfb4251" kindref="member">MaaSinkId</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaSinkId MaaTaskerAddContextSink</definition>
+        <argsstring>(MaaTasker *tasker, MaaEventCallback sink, void *trans_arg)</argsstring>
+        <name>MaaTaskerAddContextSink</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a6b9bcefbd6beaf7a0da83c92318a8693" kindref="member">MaaEventCallback</ref></type>
+          <declname>sink</declname>
+        </param>
+        <param>
+          <type>void *</type>
+          <declname>trans_arg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="32" column="33" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="32" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1af20736e5613012b909a3483757426923" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> void</type>
+        <definition>MAA_FRAMEWORK_API void MaaTaskerRemoveContextSink</definition>
+        <argsstring>(MaaTasker *tasker, MaaSinkId sink_id)</argsstring>
+        <name>MaaTaskerRemoveContextSink</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1aac4cf6870bfe8fef31ead507dcfb4251" kindref="member">MaaSinkId</ref></type>
+          <declname>sink_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="34" column="28" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="34" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1af3d259c9f9fdf89c59870f607e403375" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> void</type>
+        <definition>MAA_FRAMEWORK_API void MaaTaskerClearContextSinks</definition>
+        <argsstring>(MaaTasker *tasker)</argsstring>
+        <name>MaaTaskerClearContextSinks</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="36" column="28" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="36" declcolumn="28"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a08e81fb30421633ca6300d7c98056f03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerSetOption</definition>
+        <argsstring>(MaaTasker *tasker, MaaTaskerOption key, MaaOptionValue value, MaaOptionValueSize val_size)</argsstring>
+        <name>MaaTaskerSetOption</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1ade3bcba89b5092219c2af3b0faffa934" kindref="member">MaaTaskerOption</ref></type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1abb976599f915b1e04a9ff8bf7055bf81" kindref="member">MaaOptionValue</ref></type>
+          <declname>value</declname>
+          <briefdescription><para>byte array, int*, char*, bool* </para>
+</briefdescription>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a56ff604006917171af8e4b4974db28ef" kindref="member">MaaOptionValueSize</ref></type>
+          <declname>val_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="41" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="41" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1ac4e288dec1904fba61b65655c4317e79" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerBindResource</definition>
+        <argsstring>(MaaTasker *tasker, MaaResource *res)</argsstring>
+        <name>MaaTaskerBindResource</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1ab42b9ae54996623815428a30a8c9250d" kindref="member">MaaResource</ref> *</type>
+          <declname>res</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="47" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="47" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a9979e64533deaf3d002cbd08338bb426" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerBindController</definition>
+        <argsstring>(MaaTasker *tasker, MaaController *ctrl)</argsstring>
+        <name>MaaTaskerBindController</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1aa6c9c6967753196880a2a7f778fbb706" kindref="member">MaaController</ref> *</type>
+          <declname>ctrl</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="49" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="49" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a9bfec9b2b1f8dfd473f0cb1d0c725c65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerInited</definition>
+        <argsstring>(const MaaTasker *tasker)</argsstring>
+        <name>MaaTaskerInited</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="51" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="51" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1af90ff982cb18515afcdcaf943247a406" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a711b3db9be6db60ae4cb09e3629e42f0" kindref="member">MaaTaskId</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaTaskId MaaTaskerPostTask</definition>
+        <argsstring>(MaaTasker *tasker, const char *entry, const char *pipeline_override)</argsstring>
+        <name>MaaTaskerPostTask</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>entry</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>pipeline_override</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="53" column="33" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="53" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a456db4003863960adb50e5c8ef5dd4ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a711b3db9be6db60ae4cb09e3629e42f0" kindref="member">MaaTaskId</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaTaskId MaaTaskerPostRecognition</definition>
+        <argsstring>(MaaTasker *tasker, const char *reco_type, const char *reco_param, const MaaImageBuffer *image)</argsstring>
+        <name>MaaTaskerPostRecognition</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>reco_type</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>reco_param</declname>
+        </param>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a0a52c8503deca448e71a407cdb14d259" kindref="member">MaaImageBuffer</ref> *</type>
+          <declname>image</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reco_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Recognition type string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reco_param</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Recognition parameters json </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>image</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Previous screenshot </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="61" column="9" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="61" declcolumn="9"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a764d15d4825e8b7c42da8bec00749632" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a711b3db9be6db60ae4cb09e3629e42f0" kindref="member">MaaTaskId</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaTaskId MaaTaskerPostAction</definition>
+        <argsstring>(MaaTasker *tasker, const char *action_type, const char *action_param, const MaaRect *box, const char *reco_detail)</argsstring>
+        <name>MaaTaskerPostAction</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>action_type</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>action_param</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structMaaRect" kindref="compound">MaaRect</ref> *</type>
+          <declname>box</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>reco_detail</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>action_type</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Action type string </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>action_param</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Action parameters json </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>box</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Previous recognition position </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>reco_detail</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Previous recognition details </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="69" column="33" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="69" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1af4d3fd63071f1ba922bd90f226d1001d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1ada00e4de6b9b4dcae75ed50f4bcaeef5" kindref="member">MaaStatus</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaStatus MaaTaskerStatus</definition>
+        <argsstring>(const MaaTasker *tasker, MaaTaskId id)</argsstring>
+        <name>MaaTaskerStatus</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a711b3db9be6db60ae4cb09e3629e42f0" kindref="member">MaaTaskId</ref></type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="76" column="33" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="76" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a43e82561559f1307b50f2cc08565f69b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1ada00e4de6b9b4dcae75ed50f4bcaeef5" kindref="member">MaaStatus</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaStatus MaaTaskerWait</definition>
+        <argsstring>(const MaaTasker *tasker, MaaTaskId id)</argsstring>
+        <name>MaaTaskerWait</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a711b3db9be6db60ae4cb09e3629e42f0" kindref="member">MaaTaskId</ref></type>
+          <declname>id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="78" column="33" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="78" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a8946c572b50a0e298a31092496b89475" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerRunning</definition>
+        <argsstring>(const MaaTasker *tasker)</argsstring>
+        <name>MaaTaskerRunning</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="80" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="80" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a7211fa8675cadb5b95c3394f0bbbc8f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a711b3db9be6db60ae4cb09e3629e42f0" kindref="member">MaaTaskId</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaTaskId MaaTaskerPostStop</definition>
+        <argsstring>(MaaTasker *tasker)</argsstring>
+        <name>MaaTaskerPostStop</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="82" column="33" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="82" declcolumn="33"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a5ad0df51290ce3cb6241667b05cf659f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerStopping</definition>
+        <argsstring>(const MaaTasker *tasker)</argsstring>
+        <name>MaaTaskerStopping</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="83" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="83" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a66bcb6d294dd92c294555c826ef2d749" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1ab42b9ae54996623815428a30a8c9250d" kindref="member">MaaResource</ref> *</type>
+        <definition>MAA_FRAMEWORK_API MaaResource * MaaTaskerGetResource</definition>
+        <argsstring>(const MaaTasker *tasker)</argsstring>
+        <name>MaaTaskerGetResource</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="85" column="35" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="85" declcolumn="35"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a077181e4d90b12a219ff49d092700a86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1aa6c9c6967753196880a2a7f778fbb706" kindref="member">MaaController</ref> *</type>
+        <definition>MAA_FRAMEWORK_API MaaController * MaaTaskerGetController</definition>
+        <argsstring>(const MaaTasker *tasker)</argsstring>
+        <name>MaaTaskerGetController</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="87" column="37" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="87" declcolumn="37"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1aea0f684a6987fc963254f68870537925" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerClearCache</definition>
+        <argsstring>(MaaTasker *tasker)</argsstring>
+        <name>MaaTaskerClearCache</name>
+        <param>
+          <type><ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="89" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="89" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1aa0a412e5b5e08fb4f4e11de826700ff7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerGetRecognitionDetail</definition>
+        <argsstring>(const MaaTasker *tasker, MaaRecoId reco_id, MaaStringBuffer *node_name, MaaStringBuffer *algorithm, MaaBool *hit, MaaRect *box, MaaStringBuffer *detail_json, MaaImageBuffer *raw, MaaImageListBuffer *draws)</argsstring>
+        <name>MaaTaskerGetRecognitionDetail</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a7519e6a8329a32c8e3058c20ec74cda8" kindref="member">MaaRecoId</ref></type>
+          <declname>reco_id</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a4010bb63df489fc09efb6ba9a1fc1c98" kindref="member">MaaStringBuffer</ref> *</type>
+          <declname>node_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a4010bb63df489fc09efb6ba9a1fc1c98" kindref="member">MaaStringBuffer</ref> *</type>
+          <declname>algorithm</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref> *</type>
+          <declname>hit</declname>
+        </param>
+        <param>
+          <type><ref refid="structMaaRect" kindref="compound">MaaRect</ref> *</type>
+          <declname>box</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a4010bb63df489fc09efb6ba9a1fc1c98" kindref="member">MaaStringBuffer</ref> *</type>
+          <declname>detail_json</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a0a52c8503deca448e71a407cdb14d259" kindref="member">MaaImageBuffer</ref> *</type>
+          <declname>raw</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a851b5afdefb36ce0affc05d7df854142" kindref="member">MaaImageListBuffer</ref> *</type>
+          <declname>draws</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">hit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="94" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="94" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1ad18ddb1160386ad45e2268b5fc655488" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerGetActionDetail</definition>
+        <argsstring>(const MaaTasker *tasker, MaaActId action_id, MaaStringBuffer *node_name, MaaStringBuffer *action, MaaRect *box, MaaBool *success, MaaStringBuffer *detail_json)</argsstring>
+        <name>MaaTaskerGetActionDetail</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1ac3229e974a0f5b3508f88d1b2196f526" kindref="member">MaaActId</ref></type>
+          <declname>action_id</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a4010bb63df489fc09efb6ba9a1fc1c98" kindref="member">MaaStringBuffer</ref> *</type>
+          <declname>node_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a4010bb63df489fc09efb6ba9a1fc1c98" kindref="member">MaaStringBuffer</ref> *</type>
+          <declname>action</declname>
+        </param>
+        <param>
+          <type><ref refid="structMaaRect" kindref="compound">MaaRect</ref> *</type>
+          <declname>box</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref> *</type>
+          <declname>success</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a4010bb63df489fc09efb6ba9a1fc1c98" kindref="member">MaaStringBuffer</ref> *</type>
+          <declname>detail_json</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">action</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">box</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">success</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">detail_json</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="112" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="112" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a2807a557aa5cac9d2bee6281ec22f836" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerGetNodeDetail</definition>
+        <argsstring>(const MaaTasker *tasker, MaaNodeId node_id, MaaStringBuffer *node_name, MaaRecoId *reco_id, MaaActId *action_id, MaaBool *completed)</argsstring>
+        <name>MaaTaskerGetNodeDetail</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1aeedbbed1bc17d1ffd80ff719a71cfed5" kindref="member">MaaNodeId</ref></type>
+          <declname>node_id</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a4010bb63df489fc09efb6ba9a1fc1c98" kindref="member">MaaStringBuffer</ref> *</type>
+          <declname>node_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a7519e6a8329a32c8e3058c20ec74cda8" kindref="member">MaaRecoId</ref> *</type>
+          <declname>reco_id</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1ac3229e974a0f5b3508f88d1b2196f526" kindref="member">MaaActId</ref> *</type>
+          <declname>action_id</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref> *</type>
+          <declname>completed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">reco_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">action_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">completed</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="126" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="126" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1ae4b85b9172caa12b04648a98e923390d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerGetTaskDetail</definition>
+        <argsstring>(const MaaTasker *tasker, MaaTaskId task_id, MaaStringBuffer *entry, MaaNodeId *node_id_list, MaaSize *node_id_list_size, MaaStatus *status)</argsstring>
+        <name>MaaTaskerGetTaskDetail</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a711b3db9be6db60ae4cb09e3629e42f0" kindref="member">MaaTaskId</ref></type>
+          <declname>task_id</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a4010bb63df489fc09efb6ba9a1fc1c98" kindref="member">MaaStringBuffer</ref> *</type>
+          <declname>entry</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1aeedbbed1bc17d1ffd80ff719a71cfed5" kindref="member">MaaNodeId</ref> *</type>
+          <declname>node_id_list</declname>
+          <briefdescription><para>array </para>
+</briefdescription>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1a72a89077c419a0fe586d68bde004d856" kindref="member">MaaSize</ref> *</type>
+          <declname>node_id_list_size</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1ada00e4de6b9b4dcae75ed50f4bcaeef5" kindref="member">MaaStatus</ref> *</type>
+          <declname>status</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">node_id_list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="inout">node_id_list_size</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="out">status</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="139" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="139" declcolumn="31"/>
+      </memberdef>
+      <memberdef kind="function" id="MaaTasker_8h_1a5e00add0d572f3baaf90873443af08ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="MaaPort_8h_1a67006334d91d228121dbba7a8bf8fe05" kindref="member">MAA_FRAMEWORK_API</ref> <ref refid="MaaDef_8h_1a2f7289f2a8e07f48c6261b52a120cdf6" kindref="member">MaaBool</ref></type>
+        <definition>MAA_FRAMEWORK_API MaaBool MaaTaskerGetLatestNode</definition>
+        <argsstring>(const MaaTasker *tasker, const char *node_name, MaaNodeId *latest_id)</argsstring>
+        <name>MaaTaskerGetLatestNode</name>
+        <param>
+          <type>const <ref refid="MaaDef_8h_1a8c41e8466c5da06f230f729c29bdac8a" kindref="member">MaaTasker</ref> *</type>
+          <declname>tasker</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>node_name</declname>
+        </param>
+        <param>
+          <type><ref refid="MaaDef_8h_1aeedbbed1bc17d1ffd80ff719a71cfed5" kindref="member">MaaNodeId</ref> *</type>
+          <declname>latest_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="out">latest_id</parametername>
+</parameternamelist>
+<parameterdescription>
+<para></para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/MaaFramework/Instance/MaaTasker.h" line="150" column="31" declfile="include/MaaFramework/Instance/MaaTasker.h" declline="150" declcolumn="31"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>The tasker API. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para></para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2024 </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <location file="include/MaaFramework/Instance/MaaTasker.h"/>
+  </compounddef>
+</doxygen>
