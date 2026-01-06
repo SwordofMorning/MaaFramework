@@ -24,6 +24,7 @@ public:
         , with_cursor_pos_(with_cursor_pos)
         , block_input_(block_input)
     {
+        connect_pipe();
     }
 
     virtual ~MessageInput() override;
@@ -54,6 +55,10 @@ private:
     // 准备鼠标位置：with_cursor_pos_ 模式下移动真实光标，返回 lParam
     LPARAM prepare_mouse_position(int x, int y);
 
+    // Luna Integration
+    void connect_pipe();
+    void sync_luna_position(int x, int y);
+
     // helpers for with_cursor_pos
     POINT client_to_screen(int x, int y);
     void save_cursor_pos();
@@ -67,22 +72,13 @@ private:
     const bool with_cursor_pos_ = false;
     const bool block_input_ = false;
 
+    // Luna Pipe Handle
+    HANDLE pipe_handle_ = INVALID_HANDLE_VALUE;
+
     std::pair<int, int> last_pos_;
     bool last_pos_set_ = false;
     POINT saved_cursor_pos_ = { 0, 0 };
     bool cursor_pos_saved_ = false;
-
-    // --- Luna IPC Extension ---
-    bool try_send_luna(int type, int x, int y);
-    bool connect_luna_pipe();
-    
-    HANDLE luna_pipe_ = INVALID_HANDLE_VALUE;
-    bool luna_available_ = true; // Optimistic default
-    
-    // Protocol constants
-    static constexpr int LUNA_CMD_MOVE = 1;
-    static constexpr int LUNA_CMD_DOWN = 2;
-    static constexpr int LUNA_CMD_UP   = 3;
 };
 
 MAA_CTRL_UNIT_NS_END
