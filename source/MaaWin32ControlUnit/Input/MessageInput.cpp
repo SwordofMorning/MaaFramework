@@ -9,10 +9,81 @@
 
 MAA_CTRL_UNIT_NS_BEGIN
 
+// Define Pipe Name
+constexpr auto LUNA_PIPE_NAME = L"\\\\.\\pipe\\MaaLunaPipe";
+
 MessageInput::~MessageInput()
 {
     if (block_input_) {
         BlockInput(FALSE);
+    }
+    // [LUNA INTEGRATION] Cleanup
+    if (pipe_handle_ != INVALID_HANDLE_VALUE) {
+        CloseHandle(pipe_handle_);
+        pipe_handle_ = INVALID_HANDLE_VALUE;
+    }
+}
+
+// [LUNA INTEGRATION] Connect implementation
+void MessageInput::connect_pipe()
+{
+    pipe_handle_ = CreateFileW(
+        LUNA_PIPE_NAME,
+        GENERIC_READ | GENERIC_WRITE,
+        0,              // No sharing
+        NULL,           // Default security attributes
+        OPEN_EXISTING,  // Opens existing pipe
+        0,              // Default attributes
+        NULL            // No template file
+    );
+
+    if (pipe_handle_ == INVALID_HANDLE_VALUE) {
+        // LogWarning << "Could not connect to Luna Pipe. Background click fix disabled.";
+    } else {
+        DWORD mode = PIPE_READMODE_MESSAGE;
+        SetNamedPipeHandleState(pipe_handle_, &mode, NULL, NULL);
+        LogInfo << "Connected to Luna Pipe for background click injection.";
+    }
+}
+
+// [LUNA INTEGRATION] Sync implementation
+void MessageInput::sync_luna_position(int x, int y)
+{
+    if (pipe_handle_ == INVALID_HANDLE_VALUE) {
+        return;
+    }
+
+    // Protocol: "MOVE x y"
+    std::string msg = "MOVE " + std::to_string(x) + " " + std::to_string(y);
+    DWORD bytes_written = 0;
+    
+    BOOL success = WriteFile(
+        pipe_handle_,
+        msg.c_str(),
+        static_cast<DWORD>(msg.length()),
+        &bytes_written,
+        NULL
+    );
+
+    if (!success) {
+        CloseHandle(pipe_handle_);
+        pipe_handle_ = INVALID_HANDLE_VALUE;
+        return;
+    }
+
+    // Wait for "OK" response to ensure synchronization
+    char buffer[16];
+    DWORD bytes_read = 0;
+    success = ReadFile(
+        pipe_handle_,
+        buffer,
+        sizeof(buffer) - 1,
+        &bytes_read,
+        NULL
+    );
+
+    if (success && bytes_read > 0) {
+        buffer[bytes_read] = '\0';
     }
 }
 
@@ -124,6 +195,9 @@ bool MessageInput::touch_down(int contact, int x, int y, int pressure)
         return false;
     }
 
+    // [LUNA INTEGRATION] Sync fake coordinates
+    sync_luna_position(x, y);
+
     MouseMessageInfo move_info;
     if (!contact_to_mouse_move_message(contact, move_info)) {
         LogError << VAR(mode_) << VAR(with_cursor_pos_) << "contact out of range" << VAR(contact);
@@ -183,6 +257,9 @@ bool MessageInput::touch_move(int contact, int x, int y, int pressure)
         return false;
     }
 
+    // [LUNA INTEGRATION] Sync fake coordinates
+    sync_luna_position(x, y);
+
     MouseMessageInfo msg_info;
     if (!contact_to_mouse_move_message(contact, msg_info)) {
         LogError << VAR(mode_) << VAR(with_cursor_pos_) << "contact out of range" << VAR(contact);
@@ -226,6 +303,10 @@ bool MessageInput::touch_up(int contact)
     }
 
     auto target_pos = get_target_pos();
+    
+    // [LUNA INTEGRATION] Sync safety check
+    sync_luna_position(target_pos.first, target_pos.second);
+
     if (!send_or_post_w(msg_info.message, msg_info.w_param, MAKELPARAM(target_pos.first, target_pos.second))) {
         return false;
     }
@@ -321,7 +402,12 @@ bool MessageInput::scroll(int dx, int dy)
         }
     });
 
+    // Determine where the scroll is happening (usually last known position)
     auto target_pos = get_target_pos();
+
+    // [LUNA INTEGRATION] Sync position before scrolling
+    // This is crucial for background scrolling to target the correct element
+    sync_luna_position(target_pos.first, target_pos.second);
 
     if (with_cursor_pos_) {
         // 保存当前光标位置，并移动到上次记录的位置

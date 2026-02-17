@@ -24,6 +24,8 @@ public:
         , with_cursor_pos_(with_cursor_pos)
         , block_input_(block_input)
     {
+        // [LUNA INTEGRATION] Initialize pipe connection
+        connect_pipe();
     }
 
     virtual ~MessageInput() override;
@@ -51,21 +53,28 @@ private:
     void send_activate();
     bool send_or_post_w(UINT message, WPARAM wParam, LPARAM lParam);
 
-    // 准备鼠标位置：with_cursor_pos_ 模式下移动真实光标，返回 lParam
+    // Prepare mouse position: moves real cursor if with_cursor_pos_ is true, returns lParam
     LPARAM prepare_mouse_position(int x, int y);
+
+    // [LUNA INTEGRATION]
+    void connect_pipe();
+    void sync_luna_position(int x, int y);
 
     // helpers for with_cursor_pos
     POINT client_to_screen(int x, int y);
     void save_cursor_pos();
     void restore_cursor_pos();
 
-    // 获取 last_pos_，若未设置则返回窗口客户区中心坐标
+    // Get last_pos_, or center of client area if not set
     std::pair<int, int> get_target_pos() const;
 
     const HWND hwnd_ = nullptr;
     const Mode mode_ = Mode::SendMessage;
     const bool with_cursor_pos_ = false;
     const bool block_input_ = false;
+
+    // [LUNA INTEGRATION] Pipe Handle
+    HANDLE pipe_handle_ = INVALID_HANDLE_VALUE;
 
     std::pair<int, int> last_pos_;
     bool last_pos_set_ = false;
