@@ -381,6 +381,46 @@ bool MessageInput::key_up(int key)
     return send_or_post_w(WM_KEYUP, static_cast<WPARAM>(key), lParam);
 }
 
+void MessageInput::sync_luna_wheel(int delta, int x, int y)
+{
+    if (pipe_handle_ == INVALID_HANDLE_VALUE) {
+        return;
+    }
+
+    // Protocol: "WHEEL delta x y"
+    std::string msg = "WHEEL " + std::to_string(delta) + " " + std::to_string(x) + " " + std::to_string(y);
+    DWORD bytes_written = 0;
+    
+    BOOL success = WriteFile(
+        pipe_handle_,
+        msg.c_str(),
+        static_cast<DWORD>(msg.length()),
+        &bytes_written,
+        NULL
+    );
+
+    if (!success) {
+        CloseHandle(pipe_handle_);
+        pipe_handle_ = INVALID_HANDLE_VALUE;
+        return;
+    }
+
+    // wait "OK"
+    char buffer[16];
+    DWORD bytes_read = 0;
+    success = ReadFile(
+        pipe_handle_,
+        buffer,
+        sizeof(buffer) - 1,
+        &bytes_read,
+        NULL
+    );
+
+    if (success && bytes_read > 0) {
+        buffer[bytes_read] = '\0';
+    }
+}
+
 bool MessageInput::scroll(int dx, int dy)
 {
     LogInfo << VAR(mode_) << VAR(with_cursor_pos_) << VAR(dx) << VAR(dy);
@@ -402,15 +442,16 @@ bool MessageInput::scroll(int dx, int dy)
         }
     });
 
-    // Determine where the scroll is happening (usually last known position)
     auto target_pos = get_target_pos();
 
-    // [LUNA INTEGRATION] Sync position before scrolling
-    // This is crucial for background scrolling to target the correct element
-    sync_luna_position(target_pos.first, target_pos.second);
+    if (dy != 0) {
+        sync_luna_wheel(dy, target_pos.first, target_pos.second);
+    } 
+    else {
+        sync_luna_position(target_pos.first, target_pos.second);
+    }
 
     if (with_cursor_pos_) {
-        // 保存当前光标位置，并移动到上次记录的位置
         save_cursor_pos();
         POINT screen_pos = client_to_screen(target_pos.first, target_pos.second);
         SetCursorPos(screen_pos.x, screen_pos.y);
@@ -418,7 +459,6 @@ bool MessageInput::scroll(int dx, int dy)
 
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
 
-    // WM_MOUSEWHEEL 的 lParam 应为屏幕坐标
     POINT screen_pos = client_to_screen(target_pos.first, target_pos.second);
     LPARAM lParam = MAKELPARAM(screen_pos.x, screen_pos.y);
 
@@ -444,7 +484,6 @@ bool MessageInput::scroll(int dx, int dy)
 
     if (with_cursor_pos_) {
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
-        // 恢复光标位置
         restore_cursor_pos();
     }
 

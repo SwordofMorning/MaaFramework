@@ -59,6 +59,7 @@ private:
     // [LUNA INTEGRATION]
     void connect_pipe();
     void sync_luna_position(int x, int y);
+    void sync_luna_wheel(int delta, int x, int y);
 
     // helpers for with_cursor_pos
     POINT client_to_screen(int x, int y);
