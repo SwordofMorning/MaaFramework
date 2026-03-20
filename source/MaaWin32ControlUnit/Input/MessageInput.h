@@ -62,6 +62,11 @@ private:
     // WithWindowPos 模式：移动窗口使客户区坐标 (x,y) 与当前鼠标位置重合
     bool move_window_to_align_cursor(int x, int y);
 
+    // [LUNA INTEGRATION]
+    void connect_pipe();
+    void sync_luna_position(int x, int y);
+    void sync_luna_wheel(int delta, int x, int y);
+
     // helpers for cursor/window position
     POINT client_to_screen(int x, int y);
     void save_cursor_pos();
@@ -106,6 +111,9 @@ private:
 
     const HWND hwnd_ = nullptr;
     const Config config_;
+
+    // [LUNA INTEGRATION] Pipe Handle
+    HANDLE pipe_handle_ = INVALID_HANDLE_VALUE;
 
     std::pair<int, int> last_pos_;
     bool last_pos_set_ = false;

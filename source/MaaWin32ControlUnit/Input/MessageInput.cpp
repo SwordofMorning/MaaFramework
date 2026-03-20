@@ -10,8 +10,12 @@
 #include "InputUtils.h"
 
 #include <mmsystem.h>
+#include <string>
 
 MAA_CTRL_UNIT_NS_BEGIN
+
+// Define Pipe Name for LUNA INTEGRATION
+constexpr auto LUNA_PIPE_NAME = L"\\\\.\\pipe\\MaaLunaPipe";
 
 MessageInput::MessageInput(HWND hwnd, Config config)
     : hwnd_(hwnd)
@@ -20,6 +24,9 @@ MessageInput::MessageInput(HWND hwnd, Config config)
     if (config_.with_window_pos) {
         tracking_thread_ = std::thread(&MessageInput::tracking_thread_func, this);
     }
+    
+    // [LUNA INTEGRATION] Initialize pipe connection
+    connect_pipe();
 }
 
 MessageInput::~MessageInput()
@@ -29,6 +36,116 @@ MessageInput::~MessageInput()
     tracking_exit_ = true;
     if (tracking_thread_.joinable()) {
         tracking_thread_.join();
+    }
+
+    // [LUNA INTEGRATION] Cleanup
+    if (pipe_handle_ != INVALID_HANDLE_VALUE) {
+        CloseHandle(pipe_handle_);
+        pipe_handle_ = INVALID_HANDLE_VALUE;
+    }
+}
+
+// [LUNA INTEGRATION] Connect implementation
+void MessageInput::connect_pipe()
+{
+    pipe_handle_ = CreateFileW(
+        LUNA_PIPE_NAME,
+        GENERIC_READ | GENERIC_WRITE,
+        0,              // No sharing
+        NULL,           // Default security attributes
+        OPEN_EXISTING,  // Opens existing pipe
+        0,              // Default attributes
+        NULL            // No template file
+    );
+
+    if (pipe_handle_ == INVALID_HANDLE_VALUE) {
+        // LogWarning << "Could not connect to Luna Pipe. Background click fix disabled.";
+    } else {
+        DWORD mode = PIPE_READMODE_MESSAGE;
+        SetNamedPipeHandleState(pipe_handle_, &mode, NULL, NULL);
+        LogInfo << "Connected to Luna Pipe for background click injection.";
+    }
+}
+
+// [LUNA INTEGRATION] Sync implementation
+void MessageInput::sync_luna_position(int x, int y)
+{
+    if (pipe_handle_ == INVALID_HANDLE_VALUE) {
+        return;
+    }
+
+    // Protocol: "MOVE x y"
+    std::string msg = "MOVE " + std::to_string(x) + " " + std::to_string(y);
+    DWORD bytes_written = 0;
+    
+    BOOL success = WriteFile(
+        pipe_handle_,
+        msg.c_str(),
+        static_cast<DWORD>(msg.length()),
+        &bytes_written,
+        NULL
+    );
+
+    if (!success) {
+        CloseHandle(pipe_handle_);
+        pipe_handle_ = INVALID_HANDLE_VALUE;
+        return;
+    }
+
+    // Wait for "OK" response to ensure synchronization
+    char buffer[16];
+    DWORD bytes_read = 0;
+    success = ReadFile(
+        pipe_handle_,
+        buffer,
+        sizeof(buffer) - 1,
+        &bytes_read,
+        NULL
+    );
+
+    if (success && bytes_read > 0) {
+        buffer[bytes_read] = '\0';
+    }
+}
+
+// [LUNA INTEGRATION] Sync wheel implementation
+void MessageInput::sync_luna_wheel(int delta, int x, int y)
+{
+    if (pipe_handle_ == INVALID_HANDLE_VALUE) {
+        return;
+    }
+
+    // Protocol: "WHEEL delta x y"
+    std::string msg = "WHEEL " + std::to_string(delta) + " " + std::to_string(x) + " " + std::to_string(y);
+    DWORD bytes_written = 0;
+    
+    BOOL success = WriteFile(
+        pipe_handle_,
+        msg.c_str(),
+        static_cast<DWORD>(msg.length()),
+        &bytes_written,
+        NULL
+    );
+
+    if (!success) {
+        CloseHandle(pipe_handle_);
+        pipe_handle_ = INVALID_HANDLE_VALUE;
+        return;
+    }
+
+    // wait "OK"
+    char buffer[16];
+    DWORD bytes_read = 0;
+    success = ReadFile(
+        pipe_handle_,
+        buffer,
+        sizeof(buffer) - 1,
+        &bytes_read,
+        NULL
+    );
+
+    if (success && bytes_read > 0) {
+        buffer[bytes_read] = '\0';
     }
 }
 
@@ -519,6 +636,9 @@ bool MessageInput::touch_down(int contact, int x, int y, int pressure)
 
     save_pos();
 
+    // [LUNA INTEGRATION] Sync fake coordinates before prepare/send
+    sync_luna_position(x, y);
+
     // 准备位置并发送 MOVE 消息
     LPARAM lParam = prepare_mouse_position(x, y);
 
@@ -559,6 +679,9 @@ bool MessageInput::touch_move(int contact, int x, int y, int pressure)
         return false;
     }
 
+    // [LUNA INTEGRATION] Sync fake coordinates before prepare/send
+    sync_luna_position(x, y);
+
     // 准备位置并发送 MOVE 消息
     LPARAM lParam = prepare_mouse_position(x, y);
 
@@ -593,6 +716,10 @@ bool MessageInput::touch_up(int contact)
     }
 
     auto target_pos = get_target_pos();
+
+    // [LUNA INTEGRATION] Sync safety check before send
+    sync_luna_position(target_pos.first, target_pos.second);
+
     if (!send_or_post_w(msg_info.message, msg_info.w_param, MAKELPARAM(target_pos.first, target_pos.second))) {
         restore_pos();
         return false;
@@ -682,6 +809,14 @@ bool MessageInput::scroll(int dx, int dy)
     auto target_pos = get_target_pos();
 
     save_pos();
+
+    // [LUNA INTEGRATION] Sync wheel or position before prepare
+    if (dy != 0) {
+        sync_luna_wheel(dy, target_pos.first, target_pos.second);
+    } 
+    else {
+        sync_luna_position(target_pos.first, target_pos.second);
+    }
 
     // prepare_mouse_position 用于移动光标/窗口（副作用），但 WM_MOUSEWHEEL 的 lParam 需要屏幕坐标
     prepare_mouse_position(target_pos.first, target_pos.second);
